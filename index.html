@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body class="d-flex h-100 text-center text-bg-dark">
+  <body class="d-flex h-100 text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto">
         <div>
@@ -20,14 +20,66 @@
       </header>
 
       <div class="position-absolute top-50 start-50 translate-middle">
-        <main class="px-3">
-          <h1>Por Abril Bojorges</h1>
-          <video class="object-fit-contain" controls>
-            <source src="audio.mp4" type="video/mp4" />
-            Tu navegador no soporta la reproducción de video.
-          </video>
-        </main>
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div
+              class="col-md-4 d-flex justify-content-center align-items-center"
+            >
+              <audio id="audioPlayer" src="audio.mp4"></audio>
+              <button
+                type="button"
+                class="btn btn-light"
+                id="playPauseBtn"
+                onclick="togglePlayPause()"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  class="bi bi-play-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Ingredientes:</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">2 puños de harina</li>
+                  <li class="list-group-item">1 cucharada de sal</li>
+                  <li class="list-group-item">1 litro de agua</li>
+                  <li class="list-group-item">Quesillo deshebrado</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <script>
+      const audioPlayer = document.getElementById("audioPlayer");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      let isPlaying = false;
+
+      function togglePlayPause() {
+        if (isPlaying) {
+          audioPlayer.pause();
+          playPauseBtn.innerHTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>';
+          isPlaying = false;
+        } else {
+          audioPlayer.play();
+          playPauseBtn.innerHTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/></svg>';
+          isPlaying = true;
+        }
+      }
+    </script>
   </body>
 </html>
